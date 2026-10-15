@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\InventoryRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\StockMovementRepositoryInterface;
 use App\Repositories\Contracts\StockTransferRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\WarehouseRepositoryInterface;
+use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\InventoryRepository;
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\StockMovementRepository;
@@ -22,15 +24,16 @@ use Illuminate\Support\ServiceProvider;
  */
 class RepositoryServiceProvider extends ServiceProvider
 {
-    /**
-     * @var array<class-string, class-string>
-     */
-    public array $bindings = [
-        InventoryRepositoryInterface::class => InventoryRepository::class,
-        StockMovementRepositoryInterface::class => StockMovementRepository::class,
-        StockTransferRepositoryInterface::class => StockTransferRepository::class,
-        ProductRepositoryInterface::class => ProductRepository::class,
-        WarehouseRepositoryInterface::class => WarehouseRepository::class,
-        UserRepositoryInterface::class => UserRepository::class,
-    ];
+  /**
+   * @var array<class-string, class-string>
+   */
+  public array $bindings = [
+    InventoryRepositoryInterface::class => InventoryRepository::class,
+    StockMovementRepositoryInterface::class => StockMovementRepository::class,
+    StockTransferRepositoryInterface::class => StockTransferRepository::class,
+    CategoryRepositoryInterface::class => CategoryRepository::class,
+    ProductRepositoryInterface::class => ProductRepository::class,
+    WarehouseRepositoryInterface::class => WarehouseRepository::class,
+    UserRepositoryInterface::class => UserRepository::class,
+  ];
 }
