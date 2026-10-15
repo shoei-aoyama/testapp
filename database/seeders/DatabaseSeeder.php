@@ -2,24 +2,30 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
+  use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        // User::factory(10)->create();
+  /**
+   * Seed the application's database.
+   *
+   * 固定データ（毎回同じ内容）を先に入れ、そのあとでランダムなダミーデータを入れる。
+   * 固定データだけが必要なときは、--class で個別に実行する。
+   */
+  public function run(): void
+  {
+    $this->call([
+      // 固定データ
+      CategorySeeder::class,
+      WarehouseSeeder::class,
+      UserSeeder::class,
+      ProductSeeder::class,
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-    }
+      // ランダムなダミーデータ（固定データに依存する）
+      DummyDataSeeder::class,
+    ]);
+  }
 }
